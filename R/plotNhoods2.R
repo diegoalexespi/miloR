@@ -25,7 +25,7 @@
 #' NULL
 #'
 #' @export
-#' @rdname plotNhoodGraph
+#' @rdname plotNhoodGraphLogFC
 #' @import igraph
 #' @import ggraph
 #' @importFrom SummarizedExperiment colData<-
@@ -82,8 +82,6 @@ plotNhoodGraphLogFC <- function(x, milo_res, alpha=0.05, res_column = "logFC",
     
   }
   
-  
-  
   pl <- ggplot(nh_coldata, aes(x = !!sym(layout_names[1]), y = !!sym(layout_names[2])))
   
   if(include.density){
@@ -99,39 +97,7 @@ plotNhoodGraphLogFC <- function(x, milo_res, alpha=0.05, res_column = "logFC",
   pl <- pl  +
     scale_fill_gradient2()+
     theme_classic(base_size=14)
-    # scale_fill_gradientn(
-    #   colours = colorRampPalette(rev(RColorBrewer::brewer.pal(11, "RdBu")))(100),
-    #   values = c(1.0, (0 - min(rdf$layer)) / (max(rdf$layer) - min(rdf$layer)), 0)
-    # )
-    # theme(axis.line = element_blank(), axis.text = element_blank(),
-    #       axis.ticks = element_blank(), axis.title = element_blank())
-    # 
-  
-  # 
-  
-  # if(colour_by %in% c("logFC")){
-  #   pl <- pl +
-  #     geom_node_point(aes(fill = colour_by, size = size), shape=21, stroke=node_stroke) +
-  #     scale_size(range =size_range, name="Nhood size") +
-  #     scale_edge_width(range = c(0.2,3), name="overlap size") 
-  #   
-  # } else{
-  #   pl <- pl +
-  #     geom_node_point(aes(fill = colour_by, size = size), shape=21, stroke=node_stroke) +
-  #     scale_size(range = size_range, name="Nhood size") +
-  #     scale_edge_width(range = c(0.2,3), name="overlap size") +
-  #     theme_classic(base_size=14) +
-  #     theme(axis.line = element_blank(), axis.text = element_blank(),
-  #           axis.ticks = element_blank(), axis.title = element_blank())
-  #   # theme_graph()
-  # }
-  # 
-  # if (is.numeric(V(nh_graph)$colour_by)) {
-  #   pl <- pl + scale_fill_gradient2(name=colour_by)
-  # } else {
-  #   mycolors <- colorRampPalette(brewer.pal(11, "Spectral"))(length(unique(V(nh_graph)$colour_by)))
-  #   pl <- pl + scale_fill_manual(values=mycolors, name=colour_by, na.value="white")
-  # }
+
   pl
 }
 
